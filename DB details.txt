@@ -1,0 +1,46 @@
+CREATE DATABASE `springdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+CREATE TABLE `parenttask` (
+  `parenttaskid` bigint(20) NOT NULL,
+  `parenttaskname` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`parenttaskid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `project` (
+  `projectid` bigint(20) NOT NULL,
+  `enddate` datetime DEFAULT NULL,
+  `projectname` varchar(255) DEFAULT NULL,
+  `projectstartdate` datetime DEFAULT NULL,
+  `projectstatus` varchar(255) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `priorityfrom` int(11) DEFAULT NULL,
+  `priorityto` int(11) DEFAULT NULL,
+  PRIMARY KEY (`projectid`),
+  KEY `FKf1va93taog6qokr6sqmtgr93h` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `task` (
+  `taskid` bigint(20) NOT NULL,
+  `enddate` datetime DEFAULT NULL,
+  `startdate` datetime DEFAULT NULL,
+  `taskname` varchar(255) DEFAULT NULL,
+  `parentid` bigint(20) DEFAULT NULL,
+  `parenttaskname` varchar(255) DEFAULT NULL,
+  `priorityfrom` int(11) DEFAULT NULL,
+  `priorityto` int(11) DEFAULT NULL,
+  `taskstatus` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`taskid`),
+  KEY `FKsr3agwfpxhqwryvbk1rmun1vl` (`parentid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `users` (
+  `userid` bigint(20) NOT NULL,
+  `employeeid` bigint(20) DEFAULT NULL,
+  `firstname` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `projectid` bigint(20) DEFAULT NULL,
+  `taskid` bigint(20) DEFAULT NULL,
+  `edituser` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`userid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
